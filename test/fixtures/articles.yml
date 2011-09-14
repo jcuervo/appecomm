@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  content: MyText
+  fb_publish: false
+  twitter_publish: false
+  meta_keywords: MyString
+  meta_description: MyString
+
+two:
+  title: MyString
+  content: MyText
+  fb_publish: false
+  twitter_publish: false
+  meta_keywords: MyString
+  meta_description: MyString

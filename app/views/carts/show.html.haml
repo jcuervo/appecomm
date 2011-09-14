@@ -1,0 +1,39 @@
+%h1 Your Cart
+
+%table
+  %tr
+    %th Product
+    %th Quantity
+    %th Price
+    %th Item Total
+
+  - @cart.line_items.each do |line_item|
+    %tr
+      %td= link_to "#{line_item.product.name}", product_path(line_item.product)
+      %td
+        = semantic_form_for line_item do |item|
+          = item.input :quantity, :value => line_item.quantity
+          = item.buttons do
+            = item.commit_button :update_item
+        = link_to "Delete Item", line_item_path(line_item), :method => :delete, :confirm => "Are you sure you want to remove this item from the list?"
+      %td= number_to_currency(line_item.price)
+      %td= number_to_currency(line_item.sub_total)
+%br
+= button_to "Empty Cart", cart_path, :method => :delete, :confirm => "Are you sure you want to empty your cart?"
+%br
+%br
+
+%table
+  %tr
+    %td Total Price:
+    %td= number_to_currency(@cart.total_price)
+  %tr
+    %td Shipping:
+    %td xxx
+  %tr
+    %td Grand Total:
+    %td= number_to_currency(@cart.total_price)
+  %tr
+    %td{:colspan => "2"}
+      = button_to "Check Out", "/check_out"
+

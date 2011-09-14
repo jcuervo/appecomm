@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @article.title
+%p
+  %b Content:
+  = @article.content
+%p
+  %b Fb publish:
+  = @article.fb_publish
+%p
+  %b Twitter publish:
+  = @article.twitter_publish
+%p
+  %b Meta keywords:
+  = @article.meta_keywords
+%p
+  %b Meta description:
+  = @article.meta_description
+
+= link_to 'Edit', edit_article_path(@article)
+\|
+= link_to 'Back', articles_path

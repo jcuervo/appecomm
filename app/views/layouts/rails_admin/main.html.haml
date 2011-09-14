@@ -1,0 +1,25 @@
+- if @abstract_model && @plugin_name
+  - content_for :title do
+    #{@abstract_model.pretty_name} | #{@plugin_name}
+!!! 5
+%html
+  %head
+    %title= yield :title || "#{@page_name} | #{@plugin_name}"
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "NONE,NOARCHIVE", :name => "robots"}
+    
+    = stylesheet_link_tag "rails_admin/rails_admin.css"
+
+    = head_style
+    = csrf_meta_tag
+  %body.rails_admin
+    #container
+      = render(:partial => 'layouts/rails_admin/header')
+      #wrapper.wat-cf
+        #main
+          #content= yield
+          #footer
+            %p= "#{APP_CONFIG['site_name']} | 2011"
+        = render :partial => "layouts/rails_admin/sidebar"
+    = javascript_include_tag "rails_admin/rails_admin.js"
+    = head_javascript

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @product.name
+%p
+  %b Description:
+  = @product.description.html_safe
+%p
+  %b Price:
+  = number_to_currency(@product.price)
+%p
+  = semantic_form_for LineItem.new do |f|
+    = f.input :product_id, :as => :hidden, :value => @product.id
+    = f.input :quantity
+    = f.buttons do
+      = f.commit_button :add_to_cart
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @page.title
+%p
+  %b Content:
+  = @page.content
+%p
+  %b Browser title:
+  = @page.browser_title
+%p
+  %b Meta keywords:
+  = @page.meta_keywords
+%p
+  %b Meta description:
+  = @page.meta_description
+
+= link_to 'Edit', edit_page_path(@page)
+\|
+= link_to 'Back', pages_path

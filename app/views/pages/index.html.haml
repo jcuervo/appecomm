@@ -1,0 +1,27 @@
+%h1 Listing pages
+
+%table
+  %tr
+    %th Title
+    %th Content
+    %th Browser title
+    %th Meta keywords
+    %th Meta description
+    %th
+    %th
+    %th
+
+  - @pages.each do |page|
+    %tr
+      %td= page.title
+      %td= page.content
+      %td= page.browser_title
+      %td= page.meta_keywords
+      %td= page.meta_description
+      %td= link_to 'Show', page
+      %td= link_to 'Edit', edit_page_path(page)
+      %td= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Page', new_page_path

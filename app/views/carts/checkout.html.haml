@@ -1,0 +1,25 @@
+%h1 Check Out
+
+%table
+  %tr
+    %th Product
+    %th Quantity
+    %th Price
+    %th Item Total
+
+  - @cart.line_items.each do |line_item|
+    %tr
+      %td= link_to "#{line_item.product.name}", product_path(line_item.product)
+      %td= line_item.quantity
+      %td= number_to_currency(line_item.price)
+      %td= number_to_currency(line_item.sub_total)
+  %tr
+    %td{:colspan => "3"} Total Price:
+    %td= number_to_currency(@cart.total_price)
+  %tr
+    %td{:colspan => "3"} Shipping:
+    %td XXX
+  %tr
+    %td{:colspan => "3"} Grand Total:
+    %td= number_to_currency(@cart.total_price)
+
