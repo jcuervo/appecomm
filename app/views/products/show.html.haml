@@ -1,3 +1,9 @@
+= content_for :meta_keywords do
+  = @product.meta_keywords unless @product.meta_keywords.blank?
+= content_for :meta_description do
+  = @product.meta_description unless @product.meta_description.blank?
+= content_for :browser_title do
+  = @product.browser_title unless @product.browser_title.blank?
 %p#notice= notice
 
 %p
