@@ -14,8 +14,9 @@
       Remove this if you use the .htaccess
     %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %title
-    %meta{:content => "", :name => "description"}/
-    %meta{:content => "", :name => "author"}/
+    %meta{:content => yield(:meta_keywords), :name => "keywords"}/
+    %meta{:content => yield(:meta_description), :name => "description"}/
+    %meta{:content => yield(:author), :name => "author"}/
     / Mobile viewport optimized: j.mp/bplateviewport
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     / Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
