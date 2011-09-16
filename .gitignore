@@ -4,3 +4,6 @@ log/*.log
 tmp/
 .sass-cache/
 config/*.yml
+.idea/*
+db/schema.rb
+.idea/appecomm1.iml
