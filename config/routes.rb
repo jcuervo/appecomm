@@ -8,6 +8,13 @@ Apptemp::Application.routes.draw do
 
   resources :products
   resources :pages
+  
+  resources :orders do
+    collection do
+      get :failure
+      get :success
+    end
+  end
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

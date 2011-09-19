@@ -1,0 +1,18 @@
+= "New Order"
+
+- unless @order.errors.blank?
+  %div
+    = "There were some errors in processing your request:"
+    %ul
+      - @order.errors.full_messages.each do |msg|
+        %li= msg
+      
+= semantic_form_for @order do |f|
+  = f.inputs do
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :card_type, :as => :select, :collection => ["Visa", "MasterCard", "Discover", "Amex"]
+    = f.input :card_number
+    = f.input :card_verification, :label => "CVV"
+    = f.input :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :use_month_numbers => true
+  = f.buttons

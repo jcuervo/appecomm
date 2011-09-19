@@ -29,4 +29,15 @@ Apptemp::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
+  
+  # Initialize Paypal Gateway 
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => PAYMENT_LOGIN,
+      :password => PAYMENT_PASSWORD,
+      :signature => PAYMENT_SIGNATURE
+    )
+  end
+  
 end

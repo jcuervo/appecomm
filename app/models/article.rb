@@ -1,5 +1,5 @@
 require 'fgraph'
-require 'twitter'
+# require 'twitter'
 require 'bitly'
 
 class Article < ActiveRecord::Base
@@ -34,17 +34,17 @@ class Article < ActiveRecord::Base
             puts "fuck!"
           end
         end
-        if self.twitter_publish == true
-          #Technoverge twitter app
-          #https://github.com/jnunemaker/twitter
-          Twitter.configure do |config|
-            config.consumer_key = APP_CONFIG['twitter_consumer_key']
-            config.consumer_secret = APP_CONFIG['twitter_consumer_secret']
-            config.oauth_token = APP_CONFIG['twitter_oauth_token']
-            config.oauth_token_secret = APP_CONFIG['twitter_oauth_token_secret']
-          end
-          Twitter.update("#{self.title[0..(APP_CONFIG['twitter_msg_length']).to_i]} #{create_shortlink(raw_url)} ##{APP_CONFIG['twitter_app_hash']}")
-        end
+        # if self.twitter_publish == true
+        #           #Technoverge twitter app
+        #           #https://github.com/jnunemaker/twitter
+        #           Twitter.configure do |config|
+        #             config.consumer_key = APP_CONFIG['twitter_consumer_key']
+        #             config.consumer_secret = APP_CONFIG['twitter_consumer_secret']
+        #             config.oauth_token = APP_CONFIG['twitter_oauth_token']
+        #             config.oauth_token_secret = APP_CONFIG['twitter_oauth_token_secret']
+        #           end
+        #           Twitter.update("#{self.title[0..(APP_CONFIG['twitter_msg_length']).to_i]} #{create_shortlink(raw_url)} ##{APP_CONFIG['twitter_app_hash']}")
+        # end
       end
     end
   

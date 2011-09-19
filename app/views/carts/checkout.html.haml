@@ -22,4 +22,8 @@
   %tr
     %td{:colspan => "3"} Grand Total:
     %td= number_to_currency(@cart.total_price)
+  
+  %tr
+    %td{:colspan => "3"}
+    %td= link_to "Proceed to Payment", new_order_path
 
