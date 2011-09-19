@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
     
   belongs_to :cart
+  has_many  :order_items
   
   attr_accessor :card_number, :card_verification
   
