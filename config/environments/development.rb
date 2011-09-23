@@ -29,4 +29,18 @@ Apptemp::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
+  
+  # Initialize Paypal Gateway 
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      :login => "PSell_1316140875_biz_api1.yahoo.com",
+      :password => "1316140925",
+      :signature => "AX4edZUYFYuS7G73oDXiZuO619cKA0iBwnq9BmxDKUTXNs2uFoqhL6PB"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+  end
+  
+  PAYPAL_ACCOUNT = "PSell_1316140875_biz@yahoo.com"
+  
 end
