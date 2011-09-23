@@ -6,13 +6,33 @@
     %ul
       - @order.errors.full_messages.each do |msg|
         %li= msg
-      
-= semantic_form_for @order do |f|
-  = f.inputs do
+
+= semantic_form_for @order, :validate => true do |f|
+  = f.input :total, :value => @current_cart.total_price, :as => :hidden
+  = f.inputs "Billing Details" do
+    = f.input :billing_name
+    = f.input :billing_street
+    = f.input :billing_city
+    = f.input :billing_state
+    -# = f.input :billing_country
+    = f.input :billing_post
+
+  = f.inputs "Delivery Details" do
+    %input{:id=>"same", :name=>"same", :type=>"checkbox"} Same?
+    = f.input :del_name
+    = f.input :del_street
+    = f.input :del_city
+    = f.input :del_state
+    -# = f.input :del_country
+    = f.input :del_post
+
+  = f.inputs "Credit Card Details" do
     = f.input :first_name
     = f.input :last_name
-    = f.input :card_type, :as => :select, :collection => ["Visa", "MasterCard", "Discover", "Amex"]
+    = f.input :card_type, :as => :select, :collection => ["Visa", "Master", "Discover", "Amex"]
     = f.input :card_number
     = f.input :card_verification, :label => "CVV"
     = f.input :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :use_month_numbers => true
+
   = f.buttons
+  

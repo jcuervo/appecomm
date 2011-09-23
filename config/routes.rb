@@ -13,8 +13,12 @@ Apptemp::Application.routes.draw do
     collection do
       get :failure
       get :success
+      get :thankyou
+      get :paypal_process
     end
   end
+  
+  resources :payment_notifications
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

@@ -33,11 +33,14 @@ Apptemp::Application.configure do
   # Initialize Paypal Gateway 
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
-    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-      :login => PAYMENT_LOGIN,
-      :password => PAYMENT_PASSWORD,
-      :signature => PAYMENT_SIGNATURE
-    )
+    paypal_options = {
+      :login => "PSell_1316140875_biz_api1.yahoo.com",
+      :password => "1316140925",
+      :signature => "AX4edZUYFYuS7G73oDXiZuO619cKA0iBwnq9BmxDKUTXNs2uFoqhL6PB"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
   end
+  
+  PAYPAL_ACCOUNT = "PSell_1316140875_biz@yahoo.com"
   
 end

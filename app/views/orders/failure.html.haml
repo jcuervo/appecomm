@@ -1,1 +1,4 @@
 = "FAILURE!!!"
+
+- @order.transactions.each do |transaction|
+  = "#{transaction.params["error_codes"]}: #{transaction.params["message"]}"
