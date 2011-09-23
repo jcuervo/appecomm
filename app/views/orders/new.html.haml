@@ -14,7 +14,7 @@
     = f.input :billing_street
     = f.input :billing_city
     = f.input :billing_state
-    -# = f.input :billing_country
+    = f.input :billing_country, :as => :country
     = f.input :billing_post
 
   = f.inputs "Delivery Details" do
@@ -23,7 +23,7 @@
     = f.input :del_street
     = f.input :del_city
     = f.input :del_state
-    -# = f.input :del_country
+    = f.input :del_country
     = f.input :del_post
 
   = f.inputs "Credit Card Details" do
