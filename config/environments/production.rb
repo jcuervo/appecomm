@@ -57,4 +57,14 @@ Apptemp::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Initialize Payment Gateway
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :production
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new( 
+      :login => PAYMENT_LOGIN,
+      :password => PAYMENT_PASSWORD,
+      :signature => PAYMENT_SIGNATURE
+    )
+  end
 end

@@ -1,0 +1,137 @@
+<html>
+  <head>
+  </head>
+
+  <body style="background: #120e0b; margin:25px; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="vertical-align:top;" align="center">
+          <table width="655" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="vertical-align:top; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;" height="91" bgcolor="#ffffff">Domain</td>
+            </tr>
+            <tr>
+              <td style="vertical-align:top; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;" bgcolor="#ffffff">
+                <table width="100%" border="0" cellspacing="0" cellpadding="30">
+                  <tr>
+                    <td style="vertical-align:top; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">
+                      <h4 style="color: #3366cc; font-size: 18px; font-weight: bold;">Your Order</h4>
+                      <h5 style="color:#333; font-weight: bold; font-size: 16px; border-bottom: 1px solid #ccc; line-height: 25px; display:block;">Order Details</h5>
+                      <table cellpadding="3" cellspacing="0" border="0">
+                        <tr>
+                          <td valign="top" style="font-weight:bold; width: 250px; font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Payment method:</td>
+                          <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.payment_method%></td>
+                        </tr>
+                        <tr>
+                          <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Item Total:</td>
+                          <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=number_to_currency(@order.total)%></td>
+                        </tr>
+                        <tr>
+                          <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Order Date:</td>
+                          <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#= @order.order_date %></td>
+                        </tr>
+                      </table>
+
+                      <h5 style="color:#333; font-weight: bold; font-size: 16px; border-bottom: 1px solid #ccc; line-height: 25px; display:block;">Order Items</h5>
+                      <table cellpadding="0" cellspacing="0" border="0" id="shoppingcart" width="100%">
+                        <tr>
+                          <th style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; font-size: 11px; border-bottom: 2px solid #333; text-align: left; font-weight: normal;">Product</th>
+                          <th style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; font-size: 11px; border-bottom: 2px solid #333; text-align: left; font-weight: normal;">Quantity</th>
+                          <th style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; font-size: 11px; border-bottom: 2px solid #333; text-align: left; font-weight: normal;">Unit Price</th>
+                          <th style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; font-size: 11px; border-bottom: 2px solid #333; text-align: left; font-weight: normal;">Amount</th>
+                        </tr>
+                        <%#- unless @cart_items.blank? -%>
+                          <%#- for cart_item in @cart_items do -%>
+                              <tr>
+                                <td style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; font-weight: bold; width: 300px;">
+                                  <%#= cart_item.name %>
+                                  <p style=" margin-bottom: 25px; font-size: 11px; font-weight: normal; margin: 0; color: #688C99;font-family: Arial, Helvetica, sans-serif;">
+                                    <span class="options"><b>Code:</b> <%#=cart_item.options[:code]%></span>
+                                    
+                                    <%#unless cart_item.options[:bag_colours].blank?%>
+                                    <br/><span class="options"><b>Bag Colours:</b> <%#=cart_item.options[:bag_colours]%></span>
+                                    <%#end%>
+                                    
+                                    <%#unless cart_item.options[:personalised_message].blank?%>
+                                    <br/><span class="options"><b>Personalised Message:</b> <%#=cart_item.options[:personalised_message]%></span>
+                                    <%#end%>
+                                    
+                                    <%#unless cart_item.options[:balloon_colours].blank?%>
+                                    <br/><span class="options"><b>Balloon Colours:</b> <%#=cart_item.options[:balloon_colours]%></span>
+                                    <%#end%>
+                                    
+                                  </p>
+                                </td>
+                                <td style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; width:70px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">
+                                  <%#=cart_item.quantity%>
+                                </td>
+                                <td style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; width:45px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#= number_to_currency cart_item.price %></td>
+                                <td style="border-bottom: 1px dashed #18263C; vertical-align: middle; padding: 5px 2px; width:45px"><%#= number_to_currency cart_item.sub_total %></td>
+                              </tr>
+                            <%#- end -%>
+                          <%#- end -%>
+                        </table>
+
+
+                        <h5 style="color:#333; font-weight: bold; font-size: 16px; border-bottom: 1px solid #ccc; line-height: 25px; display:block;">Delivery Details</h5>
+                        <table cellpadding="3" cellspacing="0" border="0">
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Deliver To:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.deliver_to%></td>
+                          </tr>
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Address:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.address%></td>
+                          </tr>
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Suburb:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.suburb%></td>
+                          </tr>
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">State:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.state%></td>
+                          </tr>
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Postcode:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.postcode%></td>
+                          </tr>
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Country:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.country%></td>
+                          </tr>
+                        </table>
+
+                        <%#- unless @order.instructions.blank? -%>
+                          <h5 style="color:#333; font-weight: bold; font-size: 16px; border-bottom: 1px solid #ccc; line-height: 25px; display:block;">Extra Instructions:</h5>
+                          <table cellpadding="3" cellspacing="0" border="0">
+                            <tr>
+                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#=@order.instructions%></td>
+                            </tr>
+                          </table>
+                        <%#- end -%>
+
+                        <hr style="border: 0; border-bottom: 1px solid #ccc; height: 1px; margin-top: 40px;" />
+
+                        <table cellpadding="3" cellspacing="0" border="0">
+                          <tr>
+                            <td valign="top" style="font-weight:bold; width: 250px;font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;">Date Sent:</td>
+                            <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 12px;"><%#= Time.now.strftime("%d/%m/%Y at %I:%M%p") %></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>

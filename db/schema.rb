@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911082154) do
+ActiveRecord::Schema.define(:version => 20110921030219) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20110911082154) do
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "purchased_at"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -71,12 +72,59 @@ ActiveRecord::Schema.define(:version => 20110911082154) do
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
+  create_table "order_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "quantity",                                 :default => 1
+    t.decimal  "price",      :precision => 8, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_transactions", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "card_expires_on"
+    t.string   "del_name"
+    t.string   "del_street"
+    t.string   "del_city"
+    t.string   "del_state"
+    t.string   "del_country"
+    t.string   "del_post"
+    t.string   "status"
+    t.string   "payment_type"
+    t.string   "transaction_id"
+    t.float    "total"
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.string   "browser_title"
     t.string   "meta_keywords"
     t.string   "meta_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.integer  "cart_id"
+    t.string   "status"
+    t.string   "transaction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
