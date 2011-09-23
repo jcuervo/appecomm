@@ -11,7 +11,7 @@ $(document).ready(function(){
         $("input#order_del_street").val($("input#order_billing_street").val()); 
         $("input#order_del_city").val($("input#order_billing_city").val());
         $("input#order_del_state").val($("input#order_billing_state").val()); 
-        $("input#order_del_country").val($("input#order_billing_country").val()); 
+        $("select#order_del_country").val($("select#order_billing_country").val()); 
         $("input#order_del_post").val($("input#order_billing_post").val());
       } 
     else 
@@ -23,7 +23,7 @@ $(document).ready(function(){
         $("input#order_del_street_input").val(""); 
         $("input#order_de_city_input").val(""); 
         $("input#order_del_state_input").val(""); 
-        $("input#order_del_country_input").val(""); 
+        $("select#order_del_country_input").val(""); 
         $("input#order_del_post_input").val(""); 
       } 
   }); 
